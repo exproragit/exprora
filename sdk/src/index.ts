@@ -27,6 +27,19 @@ interface Experiment {
   is_control: boolean;
 }
 
+// Type declarations for optional features
+declare class HeatmapTracker {
+  constructor(apiKey: string, apiUrl: string, accountId: number);
+  startTracking(): void;
+  stopTracking(): void;
+}
+
+declare class SessionRecorder {
+  constructor(apiKey: string, apiUrl: string, visitorId: string, sessionId: string);
+  startRecording(): void;
+  stopRecording(): void;
+}
+
 class ExproraSDK {
   private apiKey: string;
   private apiUrl: string;
@@ -438,7 +451,9 @@ class ExproraSDK {
         this.apiUrl,
         parseInt(this.visitorId.replace('expr_', '')) || 0
       );
-      this.heatmapTracker.startTracking();
+      if (this.heatmapTracker) {
+        this.heatmapTracker.startTracking();
+      }
     } catch (error) {
       // Heatmaps not available
     }
@@ -452,7 +467,9 @@ class ExproraSDK {
         this.visitorId,
         this.sessionId
       );
-      this.sessionRecorder.startRecording();
+      if (this.sessionRecorder) {
+        this.sessionRecorder.startRecording();
+      }
     } catch (error) {
       // Recordings not available
     }
