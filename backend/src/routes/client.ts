@@ -42,7 +42,7 @@ router.post('/signup', validate(signupSchema), async (req: express.Request, res:
     const token = jwt.sign(
       { accountId: result.rows[0].id, email: result.rows[0].email },
       process.env.JWT_SECRET!,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as jwt.SignOptions
     );
 
     const requestId = (req as any).requestId;
@@ -91,7 +91,7 @@ router.post('/login', validate(loginSchema), async (req: express.Request, res: R
     const token = jwt.sign(
       { accountId: account.id, email: account.email },
       process.env.JWT_SECRET!,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' } as jwt.SignOptions
     );
 
     res.json({
