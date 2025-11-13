@@ -1,0 +1,24 @@
+{
+  "name": "@exprora/sdk",
+  "version": "1.0.0",
+  "description": "Exprora JavaScript SDK for A/B testing",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && node build-browser.js",
+    "dev": "tsc --watch",
+    "build:simple": "tsc"
+  },
+  "keywords": [
+    "ab-testing",
+    "conversion",
+    "optimization"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "typescript": "^5.3.3"
+  }
+}
+
